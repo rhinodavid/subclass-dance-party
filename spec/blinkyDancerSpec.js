@@ -1,3 +1,20 @@
+
+describe('Dancer', function () {
+  var dancer, clock;
+  var timeBetweenSteps = 100;
+
+  beforeEach(function() {
+    clock = sinon.useFakeTimers();
+    dancer = new Dancer (10, 20, timeBetweenSteps, '&#x1f608');
+  });
+
+  it('should have a default head', function () {
+    expect(dancer.defaultHead).to.equal('&#x1f608');
+  });
+
+});
+
+
 describe('blinkyDancer', function() {
 
   var blinkyDancer, clock;

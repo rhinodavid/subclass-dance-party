@@ -24,7 +24,14 @@ $(document).ready(function() {
     var heads = [
       '&#x1f600', // normal head
       '&#x1f604',
-      '&#x1f608'// devil head
+      '&#x1f608',
+      '&#x1f60e',
+      '&#x1f60d',
+      '&#x1f61c',
+      '&#x1f47d',
+      '&#x1f47e',
+      '&#x1f480',
+      '&#x1f633'
     ];
     [newX, newY] = getRandomSpot();
     var dancer = new dancerMakerFunction(
@@ -45,7 +52,6 @@ $(document).ready(function() {
     //returns random x and y not off screen
     var x = $('body').width() * Math.random() * 0.9 + $('body').width() * 0.05 - 35;
     var y = $('body').height() * Math.random() * 0.78 + $('body').height() * 0.11 - 140;
-    console.log(x, y);
     return [x, y];
   };
 

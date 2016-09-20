@@ -31,6 +31,20 @@ $(document).ready(function() {
     window.dancers.push(dancer);
 
     $('body').append(dancer.$node);
+
+
   });
+
+  var lineUp = function () {
+    var width = window.innerWidth * .9;
+    var height = window.innerHeight;
+
+    dancers.forEach(function (dancer, i) {
+      debugger;
+      dancer.moveTo(window.innerWidth * 0.05 + (width * i) / dancers.length, height / 2);
+    });
+  };
+
+  $('.lineUpButton').on('click', lineUp);
 });
 

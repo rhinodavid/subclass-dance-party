@@ -1,6 +1,11 @@
 class Dancer {
   constructor (top, left, timeBetweenSteps, head) {
     this.$node = $('<div class="dancer"></div>');
+    this.$node.hover(function() {
+      $(this).addClass('animated infinite jello');
+    }, function() {
+      $(this).removeClass('animated infinite jello');
+    });
     this.$body = $('<div class="dancer-body"></div>');
     this.$head = $('<div class="dancer-head"></div>');
     this.head = head;

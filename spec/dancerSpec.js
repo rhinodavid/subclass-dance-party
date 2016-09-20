@@ -12,6 +12,18 @@ describe('Dancer', function() {
     expect(whipDancer.$node).to.be.an.instanceof(jQuery);
   });
 
+  it('should have a head and a body', function() {
+    expect(whipDancer.$node.children.length).to.equal(2);
+  });
+
+  it('should have a default head', function () {
+    expect(whipDancer.head).to.equal('&#x1f600');
+  });
+
+  it('should be scaled randomly', function() {
+    expect(Number(whipDancer.$node.css('transform').slice(7, 14))).to.not.equal(1);
+  });
+  
   describe('dance', function() {
     it('should call step at least once per second', function() {
       sinon.spy(whipDancer, 'step');
@@ -27,59 +39,36 @@ describe('Dancer', function() {
   });
 });
 
-describe('whipDancer', function() {
-  var whipDancer, clock;
+describe('Whip Dancer', function() {
+  var whipDancer;
   var timeBetweenSteps = 100;
 
   beforeEach(function() {
-    clock = sinon.useFakeTimers();
     whipDancer = new WhipDancer(10, 20, timeBetweenSteps);
   });
-  it('should have a jQuery $node object', function() {
-    expect(whipDancer.$node).to.be.an.instanceof(jQuery);
-  });
-  it('should have a default head', function () {
-    expect(whipDancer.head).to.equal('&#x1f600');
-  });
-  describe('dance', function() {
-    it('should call step at least once per second', function() {
-      sinon.spy(whipDancer, 'step');
-      expect(whipDancer.step.callCount).to.be.equal(0);
-      clock.tick(timeBetweenSteps); // ? it seems an extra tick is necessary...
-      clock.tick(timeBetweenSteps);
 
-      expect(whipDancer.step.callCount).to.be.equal(1);
-
-      clock.tick(timeBetweenSteps);
-      expect(whipDancer.step.callCount).to.be.equal(2);
-    });
+  it('should have two poses', function() {
+    expect(whipDancer.poses.length).to.equal(2);
   });
 
-describe('naeDancer', function() {
-  var naeDancer, clock;
+  it('should have a first pose of left fist out', function() {
+    expect(whipDancer.poses[0]).to.equal('&nbsp;&nbsp;_/||\\&#x1f44a<br>&nbsp;&nbsp;/&oline;&nbsp;&oline;\\&nbsp;');
+  });
+});
+
+describe('Nae Nae Dancer', function() {
+  var naeDancer;
   var timeBetweenSteps = 100;
 
   beforeEach(function() {
-    clock = sinon.useFakeTimers();
-    whipDancer = new WhipDancer(10, 20, timeBetweenSteps);
+    naeDancer = new NaeDancer(10, 20, timeBetweenSteps);
   });
-  it('should have a jQuery $node object', function() {
-    expect(whipDancer.$node).to.be.an.instanceof(jQuery);
-  });
-  it('should have a default head', function () {
-    expect(whipDancer.head).to.equal('&#x1f600');
-  });
-  describe('dance', function() {
-    it('should call step at least once per second', function() {
-      sinon.spy(whipDancer, 'step');
-      expect(whipDancer.step.callCount).to.be.equal(0);
-      clock.tick(timeBetweenSteps); // ? it seems an extra tick is necessary...
-      clock.tick(timeBetweenSteps);
 
-      expect(whipDancer.step.callCount).to.be.equal(1);
+  it('should have two poses', function() {
+    expect(naeDancer.poses.length).to.equal(2);
+  });
 
-      clock.tick(timeBetweenSteps);
-      expect(whipDancer.step.callCount).to.be.equal(2);
-    });
+  it('should have a first pose of right hand up', function() {
+    expect(naeDancer.poses[0]).to.equal('&#x1f44b<br>&nbsp;&nbsp;&nbsp;\\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;\\<br>&nbsp;&nbsp;&nbsp;/&oline;&oline;\\&nbsp;<br>');
   });
 });

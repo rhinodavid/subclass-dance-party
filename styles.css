@@ -24,4 +24,28 @@ body, a:link, a:visited, a:active{
   position:absolute;
   font-size: 2em;
   color: black;
+  width: 4em;
+}
+
+.dancer-head, .dancer-body{
+  position: absolute;
+}
+
+.whip .dancer-head {
+  top: -1em;
+  left: 1em;
+  z-index: 1;
+}
+
+.nae .dancer-head {
+  top: 1.25em;
+  left: 1em;
+  z-index: 1;
+}
+
+.dancer-body {
+  z-index: 0;
+}
+.dancer-head:hover {
+  transform: scale(3);
 }

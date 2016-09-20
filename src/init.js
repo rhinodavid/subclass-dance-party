@@ -25,7 +25,7 @@ $(document).ready(function() {
     var dancer = new dancerMakerFunction(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
-      750
+      435 * 2 // 140 bpm
     );
 
     $('body').append(dancer.$node);

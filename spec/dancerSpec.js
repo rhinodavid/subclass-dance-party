@@ -37,6 +37,23 @@ describe('Dancer', function() {
       expect(whipDancer.step.callCount).to.be.equal(2);
     });
   });
+
+  describe('moving to a new position', function() {
+    it('should have a moveTo method', function() {
+      expect(whipDancer.moveTo).to.be.a('function');
+    });
+    it('calling the move method should move the dancer', function() {
+      var oldX = Number(whipDancer.$node.css('left'));
+      var oldY = Number(whipDancer.$node.css('top'));
+      whipDancer.moveTo(40, 50);
+      clock.tick(1000);
+      clock.tick(1000);
+      var X = Number(whipDancer.$node.css('left'));
+      var Y = Number(whipDancer.$node.css('top'));
+      expect(oldX).to.not.equal(X);
+      expect(oldY).to.not.equal(Y);
+    });
+  });
 });
 
 describe('Whip Dancer', function() {

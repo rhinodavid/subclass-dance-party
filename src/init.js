@@ -40,11 +40,31 @@ $(document).ready(function() {
     var height = window.innerHeight;
 
     dancers.forEach(function (dancer, i) {
-      debugger;
       dancer.moveTo(window.innerWidth * 0.05 + (width * i) / dancers.length, height / 2);
     });
   };
 
+  var pairUp = function () {
+    var whipDancers = window.dancers.filter(function (dancer) {
+      return dancer.$node.hasClass('whip');
+    });
+    var naeDancers = window.dancers.filter(function (dancer) {
+      return dancer.$node.hasClass('nae');
+    });
+    var min = Math.min(whipDancers.length, naeDancers.length);
+
+    for (var i = 0; i < min; i++) {
+      //get random spot on the map
+      var x = Math.random() * window.innerWidth;
+      var y = Math.random() * window.innerHeight;
+      //tell whip to go to left of the spot
+      whipDancers[i].moveTo(x - 50, y, 2500);
+      //tell nae to go to right of the spot
+      naeDancers[i].moveTo(x + 50, y, 2500);
+    }
+  };
+
   $('.lineUpButton').on('click', lineUp);
+  $('.pairUpButton').on('click', pairUp);
 });
 

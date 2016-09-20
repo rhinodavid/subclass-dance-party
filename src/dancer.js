@@ -57,7 +57,7 @@ class Dancer {
     }
     if (newX === this._targetX && newY === this._targetY) {
       // the dancer has made it to the new spot
-      this.setPosition(newX, newY);
+      this.setPosition(newY, newX);
     } else {
       // this dancer has not made it
       newX = this._x + frameX;

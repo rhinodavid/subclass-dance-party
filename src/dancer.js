@@ -8,6 +8,7 @@ class Dancer {
     this.$node.append(this.$head);
     this.$node.append(this.$body);
     this.setPosition(top, left);
+    this.$node.css( 'transform', `scale(${Math.random() * .3 - .15 + 1})`);
     this.timeBetweenSteps = timeBetweenSteps;
     this.poses = [];
     this.pose = 0;

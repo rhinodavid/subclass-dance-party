@@ -1,10 +1,12 @@
 class Dancer {
-  constructor (top, left, timeBetweenSteps, defaultHead) {
-    this.$node = $('<span class="dancer"></span>');
+  constructor (top, left, timeBetweenSteps, head) {
+    this.$node = $('<div class="dancer"></div>');
     this.setPosition(top, left);
     this.timeBetweenSteps = timeBetweenSteps;
+    this.head = head;
+    this.poses = [];
+    this.pose = 0;
     this.step();
-    this.defaultHead = defaultHead;
   }
   step () {
     setTimeout(this.step.bind(this), this.timeBetweenSteps);
@@ -15,5 +17,8 @@ class Dancer {
       left: left
     };
     this.$node.css(styleSettings);
+  }
+  setPose(html) {
+    this.$node.html(html);
   }
 }

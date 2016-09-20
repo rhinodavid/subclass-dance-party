@@ -21,11 +21,17 @@ $(document).ready(function() {
     var dancerMakerFunction = window[dancerName];
 
     // make a dancer with a random position
-
+    var heads = [
+      '&#x1f600', // normal head
+      '&#x1f604',
+      '&#x1f608'// devil head
+    ];
+    [newX, newY] = getRandomSpot();
     var dancer = new dancerMakerFunction(
-      $('body').height() * Math.random(),
-      $('body').width() * Math.random(),
-      435 * 2 // 140 bpm
+      newY,
+      newX,
+      435 * 2, // 140 bpm
+      heads[Math.floor(Math.random() * heads.length)]
     );
 
     window.dancers.push(dancer);
@@ -35,12 +41,20 @@ $(document).ready(function() {
 
   });
 
+  var getRandomSpot = function() {
+    //returns random x and y not off screen
+    var x = $('body').width() * Math.random() * 0.9 + $('body').width() * 0.05 - 35;
+    var y = $('body').height() * Math.random() * 0.78 + $('body').height() * 0.11 - 140;
+    console.log(x, y);
+    return [x, y];
+  };
+
   var lineUp = function () {
-    var width = window.innerWidth * .9;
-    var height = window.innerHeight;
+    var width = $('body').width() * .9;
+    var height = $('body').height();
 
     dancers.forEach(function (dancer, i) {
-      dancer.moveTo(window.innerWidth * 0.05 + (width * i) / dancers.length, height / 2);
+      dancer.moveTo($('body').width() * 0.05 + (width * i) / dancers.length - 50, height / 3);
     });
   };
 
@@ -55,16 +69,18 @@ $(document).ready(function() {
 
     for (var i = 0; i < min; i++) {
       //get random spot on the map
-      var x = Math.random() * window.innerWidth;
-      var y = Math.random() * window.innerHeight;
+      [x, y] = getRandomSpot();
       //tell whip to go to left of the spot
-      whipDancers[i].moveTo(x - 50, y, 2500);
-      //tell nae to go to right of the spot
-      naeDancers[i].moveTo(x + 50, y, 2500);
+      whipDancers[i].moveTo(x - 40, y, 2500);
+      //tell nae to go to right if the spot
+      naeDancers[i].moveTo(x + 40, y, 2500);
     }
   };
 
   $('.lineUpButton').on('click', lineUp);
   $('.pairUpButton').on('click', pairUp);
+
+  // scale dancefloor
+
 });
 

@@ -1,0 +1,23 @@
+{
+  "name": "subclass-dance-party",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "dependencies": {
+    "animate.css": "^3.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jftcode/2016-09-subclass-dance-party.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jftcode/2016-09-subclass-dance-party/issues"
+  },
+  "homepage": "https://github.com/jftcode/2016-09-subclass-dance-party#readme"
+}

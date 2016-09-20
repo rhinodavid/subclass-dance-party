@@ -28,6 +28,8 @@ $(document).ready(function() {
       435 * 2 // 140 bpm
     );
 
+    window.dancers.push(dancer);
+
     $('body').append(dancer.$node);
   });
 });

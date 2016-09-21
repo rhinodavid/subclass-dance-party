@@ -1,12 +1,17 @@
 class Dancer {
   constructor (top, left, timeBetweenSteps, head) {
     this.$node = $('<div class="dancer"></div>');
-    this.$node.addClass('animated bounceInDown');
-    this.$node.hover(function() {
-      $(this).removeClass('bounceInDown');
-      $(this).addClass('animated infinite jello');
-    }, function() {
-      $(this).removeClass('animated infinite jello');
+    this.$node.addClass('animated fadeIn');
+    $(this.$node).one('animationend',
+        function(e) {
+          $(this.$node).removeClass('animated fadeIn');
+        }.bind(this));
+    this.$node.click(function() {
+      $(this).addClass('animated flip');
+      $(this).one('animationend',
+        function(e) {
+          $(this).removeClass('animated flip');
+        }.bind(this));
     });
     this.$body = $('<div class="dancer-body"></div>');
     this.$head = $('<div class="dancer-head"></div>');
@@ -15,12 +20,10 @@ class Dancer {
     this.$node.append(this.$head);
     this.$node.append(this.$body);
     this.setPosition(top, left);
-    this.$node.css( 'transform', `scale(${Math.random() * .3 - .15 + 1})`);
     this.timeBetweenSteps = timeBetweenSteps;
     this.poses = [];
     this.pose = 0;
     this.dancing = false;
-    //this.step();
   }
   dance() {
     this.dancing = true;
@@ -35,9 +38,17 @@ class Dancer {
     }
   }
   setPosition (top, left) {
+    // find scale based on 'top' value
+    // low values => smaller scale (higher on screen)
+    // high values => higher scale
+    var height = window.innerHeight;
+    var scaleLowBound = 0.2;
+    var scaleHighBound = 2;
+    var scale = scaleLowBound + (top / height) * (scaleHighBound - scaleLowBound);
     var styleSettings = {
       top: top,
-      left: left
+      left: left,
+      transform: 'scale(' + scale + ')'
     };
     this._x = left;
     this._y = top;
@@ -50,7 +61,7 @@ class Dancer {
   setPose(html) {
     this.$body.html(html);
   }
-  moveTo(x, y, time = 5000) {
+  moveTo(x, y, time = 3000) {
     this._targetX = x;
     this._targetY = y;
     var distanceX = this._targetX - this._x;
@@ -66,10 +77,10 @@ class Dancer {
     var distanceX = this._targetX - this._x;
     var distanceY = this._targetY - this._y;
     var newX, newY;
-    if (Math.abs(distanceX) < Math.abs(frameX)) {
+    if (Math.abs(distanceX) <= Math.abs(frameX)) {
       newX = this._targetX;
     }
-    if (Math.abs(distanceY) < Math.abs(frameY)) {
+    if (Math.abs(distanceY) <= Math.abs(frameY)) {
       newY = this._targetY;
     }
     if (newX === this._targetX && newY === this._targetY) {

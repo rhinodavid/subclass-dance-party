@@ -7,23 +7,31 @@ body{
   font-size: 18px;
 }
 body, a:link, a:visited, a:active{
-  color: lightblue;
+  color: white;
 }
-.title, .addDancerButton {
+a:hover {
+  color: yellow;
+}
+.title {
   padding:5px 12px;
-  float:right;
+  float: right;
 }
 .pairUpButton, .lineUpButton {
-  padding: 5px 12px;
   float: left;
+}
+.addDancerButton {
+  float: right;
 }
 .topbar{
   height:32px;
-  background-color: #999;
   font-family: Helvetica, sans-serif;
 }
 .title{
-  background-color: #777;
+  background-color: #ccc;
+  color: white;
+  margin: 4px;
+  border-radius: 8px;
+  font-size: .8em;
 }
 .dancer{
   position:absolute;
@@ -64,7 +72,21 @@ body, a:link, a:visited, a:active{
 }
 .dancefloor pre {
   display: block;
-  font: .81vw/.95vh monospace;
+  font: .81vw/.5vh monospace;
   color: #008;
   padding-left: 1.5vw;
+  padding-top: 25vh;
+}
+
+.btn {
+  background-color: blue;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  margin: 4px;
+  padding: 5px 12px;
+}
+
+audio {
+  margin: 4px;
 }

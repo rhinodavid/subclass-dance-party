@@ -37,7 +37,7 @@ $(document).ready(function() {
     var dancer = new dancerMakerFunction(
       newY,
       newX,
-      435 * 2, // 140 bpm
+      400 * 2, // 140 bpm
       heads[Math.floor(Math.random() * heads.length)]
     );
 
@@ -85,6 +85,18 @@ $(document).ready(function() {
 
   $('.lineUpButton').on('click', lineUp);
   $('.pairUpButton').on('click', pairUp);
+  $('audio').on('play', function(e) {
+    setTimeout(function() {
+      window.dancers.forEach((dancer)=>{
+        dancer.dance();
+      });
+    }, 400 * 2);
+  });
+  $('audio').on('pause', function(e) {
+    window.dancers.forEach((dancer)=>{
+      dancer.stopDance();
+    });
+  });
 
   // scale dancefloor
 

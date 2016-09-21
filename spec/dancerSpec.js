@@ -26,6 +26,7 @@ describe('Dancer', function() {
   
   describe('dance', function() {
     it('should call step at least once per second', function() {
+      whipDancer.dance();
       sinon.spy(whipDancer, 'step');
       expect(whipDancer.step.callCount).to.be.equal(0);
       clock.tick(timeBetweenSteps); // ? it seems an extra tick is necessary...
@@ -68,8 +69,8 @@ describe('Whip Dancer', function() {
     expect(whipDancer.poses.length).to.equal(2);
   });
 
-  it('should have a first pose of left fist out', function() {
-    expect(whipDancer.poses[0]).to.equal('&nbsp;&nbsp;_/||\\&#x1f44a<br>&nbsp;&nbsp;/&oline;&nbsp;&oline;\\&nbsp;');
+  it('should have a first pose of right fist out', function() {
+    expect(whipDancer.poses[0]).to.equal('&#x1f44a/||\\_<br>&nbsp;&nbsp;&nbsp;/&oline;&nbsp;&oline;\\&nbsp;');
   });
 });
 

@@ -19,10 +19,20 @@ class Dancer {
     this.timeBetweenSteps = timeBetweenSteps;
     this.poses = [];
     this.pose = 0;
+    this.dancing = false;
+    //this.step();
+  }
+  dance() {
+    this.dancing = true;
     this.step();
   }
-  step () {
-    setTimeout(this.step.bind(this), this.timeBetweenSteps);
+  stopDance() {
+    this.dancing = false;
+  }
+  step() {
+    if (this.dancing) {
+      setTimeout(this.step.bind(this), this.timeBetweenSteps);     
+    }
   }
   setPosition (top, left) {
     var styleSettings = {

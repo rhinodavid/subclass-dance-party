@@ -37,7 +37,7 @@ $(document).ready(function() {
     var dancer = new dancerMakerFunction(
       newY,
       newX,
-      400 * 2, // 140 bpm
+      423 * 2, // 140 bpm
       heads[Math.floor(Math.random() * heads.length)]
     );
 
@@ -56,15 +56,17 @@ $(document).ready(function() {
   };
 
   var lineUp = function () {
+    shuffleArray(window.dancers);
     var width = $('body').width() * .9;
     var height = $('body').height();
 
     dancers.forEach(function (dancer, i) {
-      dancer.moveTo($('body').width() * 0.05 + (width * i) / dancers.length - 50, height / 3);
+      dancer.moveTo($('body').width() * 0.05 + (width * i) / (dancers.length - 1) - 55, height / 3.25);
     });
   };
 
   var pairUp = function () {
+    shuffleArray(window.dancers);
     var whipDancers = window.dancers.filter(function (dancer) {
       return dancer.$node.hasClass('whip');
     });
@@ -98,7 +100,15 @@ $(document).ready(function() {
     });
   });
 
-  // scale dancefloor
+  var shuffleArray = function(a) {
+    var j, x, i;
+    for (i = a.length; i; i--) {
+      j = Math.floor(Math.random() * i);
+      x = a[i - 1];
+      a[i - 1] = a[j];
+      a[j] = x;
+    }
+  };
 
 });
 

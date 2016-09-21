@@ -4,7 +4,7 @@ class WhipDancer extends Dancer {
     var leftHandPose = '&nbsp;&nbsp;_/||\\&#x1f44a<br>&nbsp;&nbsp;/&oline;&nbsp;&oline;\\&nbsp;';
     var rightHandPose = '&#x1f44a/||\\_<br>&nbsp;&nbsp;&nbsp;/&oline;&nbsp;&oline;\\&nbsp;';
     this.$node.addClass('whip');
-    this.poses.push(leftHandPose, rightHandPose);
+    this.poses.push(rightHandPose, leftHandPose);
     this.setPose(this.poses[this.pose]);
   }
   step() {
